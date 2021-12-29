@@ -1,4 +1,36 @@
 body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc-container {
+  height: 600px;
+  width: 500px;
+  display: grid;
+  grid-template-columns: 75px 75px 75px 75px;
+  grid-template-rows: 75px 75px 75px 75px 75px 75px;
+  box-sizing: border-box;
+  grid-gap: 10px 10px;
+}
+
+.display {
+  padding: 0.1em;
+  font-size: 2.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  grid-column: 1/5;
+  background-color: black;
+  color: blanchedalmond;
+}
+
+.number-memory {
+  font-size: 0.5em;
+}
+
+#zero {
+  grid-column: 1/3;
 }
