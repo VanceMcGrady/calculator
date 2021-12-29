@@ -31,6 +31,10 @@ body {
   font-size: 0.5em;
 }
 
+.current-number {
+  height: 1em;
+}
+
 #zero {
   grid-column: 1/3;
 }

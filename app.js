@@ -6,7 +6,7 @@ const numberMemoryDisplay = document.querySelector(".number-memory");
 
 const calculator = {
   displayValue: "",
-  firstOperand: null,
+  firstOperand: "",
   waitingForSecondOperand: false,
   operator: null,
 };
@@ -23,19 +23,27 @@ operatorBtn.forEach((btn) => {
 //add AC button event listener
 clearBtn.addEventListener("click", handleClear);
 
-function handleClear() {
-  currentNumberDisplay.innerText = "";
-  numberMemoryDisplay.innerText = "";
-}
-
+//numbers
 function handleNumbers(e) {
   calculator.displayValue += e.target.innerText;
-  currentNumberDisplay.innerText += calculator.displayValue;
+  currentNumberDisplay.innerText = calculator.displayValue;
   console.log(calculator.displayValue);
 }
 
+//operators
 function handleOperators(e) {
-  currentNumberDisplay.innerText += e.target.innerText;
+  calculator.firstOperand += `${calculator.displayValue} ${e.target.innerText} `;
+  numberMemoryDisplay.innerText = calculator.firstOperand;
+  calculator.displayValue = "";
+  currentNumberDisplay.innerText = calculator.displayValue;
+}
+
+//clear
+function handleClear() {
+  calculator.displayValue = "";
+  calculator.firstOperand = "";
+  currentNumberDisplay.innerText = "";
+  numberMemoryDisplay.innerText = "";
 }
 
 function add(a, b) {
