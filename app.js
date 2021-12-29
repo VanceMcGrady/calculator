@@ -27,5 +27,3 @@ function operate(operation, a, b) {
     return "ERROR";
   }
 }
-
-console.log(operate("subtract", 50, 5));
