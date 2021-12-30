@@ -60,7 +60,9 @@ function handleOperators(e) {
 // equals
 function equals(e) {
   calculator.firstOperand += `${calculator.displayValue}`;
-  console.log(calculator.firstOperand);
+  solution = calculator.firstOperand.split(" ");
+
+  console.log(solution);
 }
 
 //clear
