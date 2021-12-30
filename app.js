@@ -4,6 +4,7 @@ const clearBtn = document.querySelector("#AC");
 const currentNumberDisplay = document.querySelector(".current-number");
 const numberMemoryDisplay = document.querySelector(".number-memory");
 const equalsBtn = document.querySelector(".equals");
+const decimalBtn = document.querySelector(".decimal");
 
 const calculator = {
   displayValue: "",
@@ -27,6 +28,19 @@ clearBtn.addEventListener("click", handleClear);
 
 //add equals button event listener
 equalsBtn.addEventListener("click", equals);
+
+//add decimal button event listener
+decimalBtn.addEventListener("click", handleDecimal);
+
+//decimal
+function handleDecimal(e) {
+  if (calculator.displayValue.includes(".")) {
+    null;
+  } else {
+    calculator.displayValue += e.target.innerText;
+    currentNumberDisplay.innerText = calculator.displayValue;
+  }
+}
 
 //numbers
 function handleNumbers(e) {
