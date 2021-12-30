@@ -3,6 +3,7 @@ const operatorBtn = document.querySelectorAll(".operator");
 const clearBtn = document.querySelector("#AC");
 const currentNumberDisplay = document.querySelector(".current-number");
 const numberMemoryDisplay = document.querySelector(".number-memory");
+const equalsBtn = document.querySelector(".equals");
 
 const calculator = {
   displayValue: "",
@@ -10,6 +11,7 @@ const calculator = {
   waitingForSecondOperand: false,
   operator: null,
 };
+
 //add event listener to all number buttons
 numBtns.forEach((btn) => {
   btn.addEventListener("click", handleNumbers);
@@ -22,6 +24,9 @@ operatorBtn.forEach((btn) => {
 
 //add AC button event listener
 clearBtn.addEventListener("click", handleClear);
+
+//add equals button event listener
+equalsBtn.addEventListener("click", equals);
 
 //numbers
 function handleNumbers(e) {
@@ -36,6 +41,12 @@ function handleOperators(e) {
   numberMemoryDisplay.innerText = calculator.firstOperand;
   calculator.displayValue = "";
   currentNumberDisplay.innerText = calculator.displayValue;
+}
+
+// equals
+function equals(e) {
+  calculator.firstOperand += `${calculator.displayValue}`;
+  console.log(calculator.firstOperand);
 }
 
 //clear
