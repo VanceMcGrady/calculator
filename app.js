@@ -13,6 +13,7 @@ const calculator = {
   firstOperand: "",
   currentOperand: "",
   operation: "",
+  solution: "",
 };
 
 //functions
@@ -22,6 +23,12 @@ function updateDisplay() {
 }
 function handleNumbers(e) {
   calculator.currentOperand += e.target.innerText;
+  updateDisplay();
+}
+
+function handleOperators(e) {
+  calculator.firstOperand += ` ${calculator.currentOperand} ${e.target.innerText} `;
+  calculator.currentOperand = "";
   updateDisplay();
 }
 
@@ -87,4 +94,8 @@ function operate(operator, a, b) {
 //adding event listeners
 numberBtns.forEach((btn) => {
   btn.addEventListener("click", handleNumbers);
+});
+
+operatorBtns.forEach((btn) => {
+  btn.addEventListener("click", handleOperators);
 });
