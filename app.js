@@ -28,10 +28,22 @@ function handleNumbers(e) {
 }
 
 function handleOperators(e) {
-  let selectedOperation = e.target.innerText;
+  const selectedOperation = e.target.innerText;
 
   if (calculator.operatorPressed === true) {
     null;
+  } else if (
+    numberMemoryDisplay.innerText.includes("+") ||
+    numberMemoryDisplay.innerText.includes("-") ||
+    numberMemoryDisplay.innerText.includes("x") ||
+    numberMemoryDisplay.innerText.includes("/")
+  ) {
+    numberMemoryDisplay.innerText = `${calculator.solution} ${selectedOperation}`;
+    calculator.firstOperand = calculator.solution;
+    calculator.currentOperand = "";
+    calculator.operation = selectedOperation;
+    calculator.operatorPressed = true;
+    updateDisplay();
   } else {
     calculator.firstOperand += calculator.currentOperand;
     calculator.currentOperand = "";
@@ -43,11 +55,16 @@ function handleOperators(e) {
 }
 
 function handleEquals() {
-  currentNumberDisplay.innerText = operate(
+  calculator.solution = operate(
     calculator.operation,
     calculator.firstOperand,
     calculator.currentOperand
   );
+
+  numberMemoryDisplay.innerText += ` ${calculator.currentOperand}`;
+  calculator.operatorPressed = false;
+  currentNumberDisplay.innerText = calculator.solution;
+  calculator.firstOperand = calculator.solution;
 }
 
 function allClear() {
