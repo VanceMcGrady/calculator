@@ -4,6 +4,7 @@ const operatorBtns = document.querySelectorAll(".operator");
 const allClearBtn = document.querySelector("#AC");
 const deleteBtn = document.querySelector("#DEL");
 const equalsBtn = document.querySelector(".equals");
+const decimalBtn = document.querySelector(".decimal");
 
 const numberMemoryDisplay = document.querySelector(".number-memory");
 const currentNumberDisplay = document.querySelector(".current-number");
@@ -65,6 +66,16 @@ function handleEquals() {
   calculator.operatorPressed = false;
   currentNumberDisplay.innerText = calculator.solution;
   calculator.firstOperand = calculator.solution;
+}
+
+function handleDecimal() {
+  if (currentNumberDisplay.innerText.includes(".")) {
+    null;
+  } else {
+    calculator.currentOperand += ".";
+
+    updateDisplay();
+  }
 }
 
 function allClear() {
@@ -138,6 +149,10 @@ operatorBtns.forEach((btn) => {
   btn.addEventListener("click", handleOperators);
 });
 
+decimalBtn.addEventListener("click", handleDecimal);
+
 equalsBtn.addEventListener("click", handleEquals);
 
 allClearBtn.addEventListener("click", allClear);
+
+console.log(decimalBtn);
