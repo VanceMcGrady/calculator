@@ -15,7 +15,7 @@ const calculator = {
   currentOperand: "",
   operation: "",
   operatorPressed: false,
-  solution: "solution",
+  solution: "",
 };
 
 //functions
@@ -117,7 +117,7 @@ function operate(operator, a, b) {
 
   function divide(...params) {
     if (params.includes(0)) {
-      return "ERR";
+      return "I <3 MEG";
     } else {
       let quotient = 0;
       quotient = params[0] / params[1];
@@ -154,5 +154,3 @@ decimalBtn.addEventListener("click", handleDecimal);
 equalsBtn.addEventListener("click", handleEquals);
 
 allClearBtn.addEventListener("click", allClear);
-
-console.log(decimalBtn);
