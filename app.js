@@ -19,7 +19,7 @@ const calculator = {
 
 //functions
 function updateDisplay() {
-  numberMemoryDisplay.innerText = calculator.firstOperand;
+  numberMemoryDisplay.innerText = `${calculator.firstOperand} ${calculator.operation} `;
   currentNumberDisplay.innerText = calculator.currentOperand;
 }
 function handleNumbers(e) {
