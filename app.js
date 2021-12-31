@@ -13,7 +13,8 @@ const calculator = {
   firstOperand: "",
   currentOperand: "",
   operation: "",
-  solution: "",
+  operatorPressed: false,
+  solution: "solution",
 };
 
 //functions
@@ -27,15 +28,35 @@ function handleNumbers(e) {
 }
 
 function handleOperators(e) {
-  calculator.firstOperand += ` ${calculator.currentOperand} ${e.target.innerText} `;
-  calculator.currentOperand = "";
-  updateDisplay();
+  let selectedOperation = e.target.innerText;
+
+  if (calculator.operatorPressed === true) {
+    null;
+  } else {
+    calculator.firstOperand += calculator.currentOperand;
+    calculator.currentOperand = "";
+    calculator.operatorPressed = true;
+    calculator.operation = selectedOperation;
+    updateDisplay();
+    calculator.solution = "equals";
+  }
+}
+
+function handleEquals() {
+  currentNumberDisplay.innerText = operate(
+    calculator.operation,
+    calculator.firstOperand,
+    calculator.currentOperand
+  );
 }
 
 function allClear() {
   calculator.firstOperand = "";
   calculator.currentOperand = "";
   calculator.operation = "";
+  calculator.operatorPressed = false;
+  calculator.solution = "";
+  updateDisplay();
 }
 
 function operate(operator, a, b) {
@@ -99,3 +120,7 @@ numberBtns.forEach((btn) => {
 operatorBtns.forEach((btn) => {
   btn.addEventListener("click", handleOperators);
 });
+
+equalsBtn.addEventListener("click", handleEquals);
+
+allClearBtn.addEventListener("click", allClear);
