@@ -64,8 +64,11 @@ function handleEquals() {
 
   numberMemoryDisplay.innerText += ` ${calculator.currentOperand}`;
   calculator.operatorPressed = false;
-  currentNumberDisplay.innerText = calculator.solution;
+  currentNumberDisplay.innerText = round(calculator.solution);
   calculator.firstOperand = calculator.solution;
+  calculator.currentOperand = "";
+
+  console.log(calculator.solution);
 }
 
 function handleDecimal() {
@@ -140,6 +143,9 @@ function operate(operator, a, b) {
   }
 }
 
+function round(num) {
+  return Math.round((num + Number.EPSILON) * 100000000000000) / 100000000000000;
+}
 //adding event listeners
 numberBtns.forEach((btn) => {
   btn.addEventListener("click", handleNumbers);
