@@ -31,7 +31,7 @@ function handleNumbers(e) {
 function handleOperators(e) {
   const selectedOperation = e.target.innerText;
 
-  if (calculator.operatorPressed === true) {
+  if (calculator.operatorPressed === true || !calculator.currentOperand) {
     null;
   } else if (
     numberMemoryDisplay.innerText.includes("+") ||
@@ -64,7 +64,7 @@ function handleEquals() {
 
   numberMemoryDisplay.innerText += ` ${calculator.currentOperand}`;
   calculator.operatorPressed = false;
-  currentNumberDisplay.innerText = round(calculator.solution);
+  currentNumberDisplay.innerText = calculator.solution;
   calculator.firstOperand = calculator.solution;
   calculator.currentOperand = "";
 
@@ -120,11 +120,12 @@ function operate(operator, a, b) {
 
   function divide(...params) {
     if (params.includes(0)) {
+      setTimeout(allClear, 2000);
       return "I <3 MEG";
     } else {
       let quotient = 0;
       quotient = params[0] / params[1];
-      return quotient;
+      return round(quotient);
     }
   }
 
