@@ -56,19 +56,21 @@ function handleOperators(e) {
 }
 
 function handleEquals() {
-  calculator.solution = operate(
-    calculator.operation,
-    calculator.firstOperand,
-    calculator.currentOperand
-  );
+  if (!calculator.currentOperand) {
+    null;
+  } else {
+    calculator.solution = operate(
+      calculator.operation,
+      calculator.firstOperand,
+      calculator.currentOperand
+    );
 
-  numberMemoryDisplay.innerText += ` ${calculator.currentOperand}`;
-  calculator.operatorPressed = false;
-  currentNumberDisplay.innerText = calculator.solution;
-  calculator.firstOperand = calculator.solution;
-  calculator.currentOperand = "";
-
-  console.log(calculator.solution);
+    numberMemoryDisplay.innerText += ` ${calculator.currentOperand}`;
+    calculator.operatorPressed = false;
+    currentNumberDisplay.innerText = calculator.solution;
+    calculator.firstOperand = calculator.solution;
+    calculator.currentOperand = "";
+  }
 }
 
 function handleDecimal() {
@@ -155,6 +157,8 @@ numberBtns.forEach((btn) => {
 operatorBtns.forEach((btn) => {
   btn.addEventListener("click", handleOperators);
 });
+
+document.addEventListener("keydown", (e) => console.log(e.key));
 
 decimalBtn.addEventListener("click", handleDecimal);
 
